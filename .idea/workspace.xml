@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="v1.0.5&#10;完善了terminal set">
+    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="推送给based_heuristic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP.py" beforeDir="false" afterPath="$PROJECT_DIR$/GP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tree.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,11 +30,13 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="9c7725f6610ac9dbcc0e2b39ce0b88aa0c1e9a1e" />
+        <entry key="$PROJECT_DIR$" value="v1.0.0" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="f3124432-4552-4943-9e95-a9dea7fe8a2d" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -47,7 +52,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/PCTemp/GPHH for Matrix Shop&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
   <component name="RunManager" selected="Python.main">
@@ -255,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661588661174</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="推送给based_heuristic">
+      <created>1662166843733</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1662166843733</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -269,7 +281,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="github/v1.0.0" />
+                        <option value="based_heuristic_evaluate" />
                       </list>
                     </value>
                   </entry>
@@ -291,7 +303,8 @@
     <MESSAGE value="v1.0.3&#10;更改为外部数据输入&#10;增加更多terminal set" />
     <MESSAGE value="v1.0.4&#10;优化了树复杂度计算函数" />
     <MESSAGE value="v1.0.5&#10;完善了terminal set" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.0.5&#10;完善了terminal set" />
+    <MESSAGE value="推送给based_heuristic" />
+    <option name="LAST_COMMIT_MESSAGE" value="推送给based_heuristic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

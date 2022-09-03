@@ -34,35 +34,35 @@ class Node:
 
     # 实例化方法——grow生成法
     # 总结：生成非完成结构树，只限制最大深度，叶节点为LEAVES参数，非叶节点为OPERATORS参数
-    def grow(self, depth_limit):
-        # 如果此时的深度参数为0，则op为LEAVES中一个随机项
-        if depth_limit == 0:
-            self.op = choice(LEAVES)
-        # 深度参数不是0时，op为OPSUM（OPERATORS并LEAVES）中的一个随机项
-        else:
-            # 保证深度>1的情况下，有0.5的概率在节点选择操作算子
-            if depth_limit == 5 or round(random(), 3) < 0.5:
-                self.op = choice(OPERATORS)
-            # 有0.5的概率选择叶节点
-            else:
-                self.op = choice(LEAVES)
-        # 如果op选中的是OPERATORS中的项，则对左右节点进行递归，limit减1，
-        if self.op in OPERATORS:
-            self.left = Node()
-            self.left.grow(depth_limit - 1)
-            self.right = Node()
-            self.right.grow(depth_limit - 1)
-        # 如果op是个常系数（在LEAVES中），则节点的val值为一个01随机数（保留3位小数）
-        elif self.op == CONST:
-            self.val = round(random(), 3)
-        # 如果选中的不是OPERATORS，也不是LEAVES中的CONST，就结束生成
+    # def grow(self, depth_limit):
+    #     # 如果此时的深度参数为0，则op为LEAVES中一个随机项
+    #     if depth_limit == 0:
+    #         self.op = choice(LEAVES)
+    #     # 深度参数不是0时，op为OPSUM（OPERATORS并LEAVES）中的一个随机项
+    #     else:
+    #         # 保证深度>1的情况下，有0.5的概率在节点选择操作算子
+    #         if depth_limit == 5 or round(random(), 3) < 0.5:
+    #             self.op = choice(OPERATORS)
+    #         # 有0.5的概率选择叶节点
+    #         else:
+    #             self.op = choice(LEAVES)
+    #     # 如果op选中的是OPERATORS中的项，则对左右节点进行递归，limit减1，
+    #     if self.op in OPERATORS:
+    #         self.left = Node()
+    #         self.left.grow(depth_limit - 1)
+    #         self.right = Node()
+    #         self.right.grow(depth_limit - 1)
+    #     # 如果op是个常系数（在LEAVES中），则节点的val值为一个01随机数（保留3位小数）
+    #     elif self.op == CONST:
+    #         self.val = round(random(), 3)
+    #     # 如果选中的不是OPERATORS，也不是LEAVES中的CONST，就结束生成
 
     # 实例化方法——full生成法
     # 总结：生成完整结构树，全按最大深度生成，叶节点为LEAVES参数，非叶节点为OPERATORS参数
     def full(self, depth_limit):
         # 如果此时的深度参数已变为0，则op为LEAVES中一个随机项
         if depth_limit == 0:
-            self.op = choice(LEAVES)
+            self.op = PT
         # 深度参数不是0时，op属性为OPERATORS中一个随机项
         else:
             self.op = choice(OPERATORS)

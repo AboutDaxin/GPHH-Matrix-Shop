@@ -14,7 +14,7 @@ MAX_EVALUATIONS = 2000
 # 最小步长
 MIN_DELTA = 0.001
 # 运行多少次
-RUNS = 3
+RUNS = 1
 
 
 # 定义GP类
@@ -25,23 +25,23 @@ class GP:
         # 类属性：定义实例的种群(population)为一个列表
         self.population = []
 
-        # grow方法生成半个种群
-        # 设置一个用于生成种群的循环，为种群规模的一半，floor表示向下取整
-        for _ in range(floor(population_size/2)):
-            # 实例化个体，使用Tree模块的Individual类
-            individual = Individual(parsimony)
-            # 使用grow方法形成个体，使用Tree模块的grow函数
-            individual.grow(5)
-            # 在种群列表中增加这个个体
-            self.population.append(individual)
+        # # grow方法生成半个种群
+        # # 设置一个用于生成种群的循环，为种群规模的一半，floor表示向下取整
+        # for _ in range(floor(population_size/2)):
+        #     # 实例化个体，使用Tree模块的Individual类
+        #     individual = Individual(parsimony)
+        #     # 使用grow方法形成个体，使用Tree模块的grow函数
+        #     individual.grow(5)
+        #     # 在种群列表中增加这个个体
+        #     self.population.append(individual)
 
         # full方法生成剩下半个种群，并结合起来
         # 设置一个用于生成种群的循环，为种群规模的一半，ceil表示向上取整
-        for _ in range(ceil(population_size/2)):
+        for _ in range(ceil(population_size)):
             # 实例化个体，使用Tree模块的Individual类
             individual = Individual(parsimony)
             # 使用full方法形成个体，使用Tree模块的full函数
-            individual.full(5)
+            individual.full(1)
             # 在种群列表中增加这个个体，完成整个种群的构建
             self.population.append(individual)
 
@@ -168,32 +168,32 @@ class GP:
             # 在data_avg的第一个列表中添加平均适应度值
             data_avg[0].append(mean(fitness_data))
 
-            # 正式执行进化操作
-            # 先设置一个新变量
-            generation = 1
-            # 判断not_finished方法的bool值，若评估次数evaluations<=2000则继续执行
-            # 注：每一次evaluations值会加20 ，初始化种群后为1000。因此跳出时，evaluations值为2020，而generation此时正好为52
-            while self.not_finished():
-                # 执行父代选择方法
-                self.parentSelection()
-                # 执行子代生成方法
-                self.childGeneration()
-                # 更新适应度评估（GP类，此方法执行一次，evaluations值会+20）
-                self.evaluate(problems)
-                # 执行再引入方法
-                self.reintroduction()
-                # 执行生存选择方法
-                self.survivalSelection()
-
-                # 记录进化过程数据
-                # 列表生成式，遍历population中每个Individual的fitness，生成列表fitness_data
-                fitness_data = [i.fitness for i in self.population]
-                # 在data_best的第generation（2-52）个列表中添加最大的适应度值
-                data_best[generation].append(max(fitness_data))
-                # 在data_avg的第generation（2-52）个列表中添加平均适应度值
-                data_avg[generation].append(mean(fitness_data))
-                # 执行上述操作后，代数generation加1。跳出时正好为52，填满data列表
-                generation += 1
+            # # 正式执行进化操作
+            # # 先设置一个新变量
+            # generation = 1
+            # # 判断not_finished方法的bool值，若评估次数evaluations<=2000则继续执行
+            # # 注：每一次evaluations值会加20 ，初始化种群后为1000。因此跳出时，evaluations值为2020，而generation此时正好为52
+            # while self.not_finished():
+            #     # 执行父代选择方法
+            #     self.parentSelection()
+            #     # 执行子代生成方法
+            #     self.childGeneration()
+            #     # 更新适应度评估（GP类，此方法执行一次，evaluations值会+20）
+            #     self.evaluate(problems)
+            #     # 执行再引入方法
+            #     self.reintroduction()
+            #     # 执行生存选择方法
+            #     self.survivalSelection()
+            #
+            #     # 记录进化过程数据
+            #     # 列表生成式，遍历population中每个Individual的fitness，生成列表fitness_data
+            #     fitness_data = [i.fitness for i in self.population]
+            #     # 在data_best的第generation（2-52）个列表中添加最大的适应度值
+            #     data_best[generation].append(max(fitness_data))
+            #     # 在data_avg的第generation（2-52）个列表中添加平均适应度值
+            #     data_avg[generation].append(mean(fitness_data))
+            #     # 执行上述操作后，代数generation加1。跳出时正好为52，填满data列表
+            #     generation += 1
 
             # 本轮运行完成，输出优化信息
             # 输出本次运行次数（占位符）
@@ -224,7 +224,7 @@ class GP:
         # 输出最优值的stats
         print('stats: {{{}, total set time: {}}}'.format(best.stats, best.total_transtime))
 
-        # 输出进化过程图
-        Plot.plt_evolve(self, generations, data_avg, data_best)
+        # # 输出进化过程图
+        # Plot.plt_evolve(self, generations, data_avg, data_best)
         # 输出最优方案的甘特图
         Plot.plt_gantt(best)
