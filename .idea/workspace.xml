@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="v1.0.4&#10;优化了树复杂度计算函数">
+    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="v1.0.5&#10;完善了terminal set">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Input.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Input.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Input_outside.py" beforeDir="false" afterPath="$PROJECT_DIR$/Input_outside.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modeling.py" beforeDir="false" afterPath="$PROJECT_DIR$/Modeling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/Operations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ternimal sets.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Ternimal sets.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tree.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661567339003</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="v1.0.5&#10;完善了terminal set">
+      <created>1661588661174</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1661588661174</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -268,7 +269,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="v1.0.0" />
+                        <option value="github/v1.0.0" />
                       </list>
                     </value>
                   </entry>
@@ -289,7 +290,8 @@
     <MESSAGE value="v1.0.2&#10;更改为外部数据输入&#10;增加更多terminal set" />
     <MESSAGE value="v1.0.3&#10;更改为外部数据输入&#10;增加更多terminal set" />
     <MESSAGE value="v1.0.4&#10;优化了树复杂度计算函数" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.0.4&#10;优化了树复杂度计算函数" />
+    <MESSAGE value="v1.0.5&#10;完善了terminal set" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.0.5&#10;完善了terminal set" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
