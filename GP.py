@@ -41,7 +41,7 @@ class GP:
             # 实例化个体，使用Tree模块的Individual类
             individual = Individual(parsimony)
             # 使用full方法形成个体，使用Tree模块的full函数
-            individual.full(1)
+            individual.full(5, 6)
             # 在种群列表中增加这个个体，完成整个种群的构建
             self.population.append(individual)
 
@@ -211,20 +211,20 @@ class GP:
             # 列表bests中添加本轮的最优值
             bests.append(current_best)
 
-        # 结束上述所有轮运行，提示执行全局优化
-        print('==== GLOBAL OPTIMUM ====')
-        # 去bests列表中的最大值
-        best = max(bests)
-        # 输出最优值的适应度和根字符
-        print('best fitness: {}\n(Min-based)heuristic-routing: {}\n(Min-based)heuristic-sequencing: {}'.
-              format(best.fitness, best.root.left.string(), best.root.right.string()))
-        # 输出目标函数值
-        print('total process time: {}\ntotal due time: {}\nmakespan: {}'.
-              format(best.total_process_time, best.total_due_time, best.makespan))
-        # 输出最优值的stats
-        print('stats: {{{}, total set time: {}}}'.format(best.stats, best.total_transtime))
+        # # 结束上述所有轮运行，提示执行全局优化
+        # print('==== GLOBAL OPTIMUM ====')
+        # # 去bests列表中的最大值
+        # best = max(bests)
+        # # 输出最优值的适应度和根字符
+        # print('best fitness: {}\n(Min-based)heuristic-routing: {}\n(Min-based)heuristic-sequencing: {}'.
+        #       format(best.fitness, best.root.left.string(), best.root.right.string()))
+        # # 输出目标函数值
+        # print('total process time: {}\ntotal due time: {}\nmakespan: {}'.
+        #       format(best.total_process_time, best.total_due_time, best.makespan))
+        # # 输出最优值的stats
+        # print('stats: {{{}, total set time: {}}}'.format(best.stats, best.total_transtime))
 
         # # 输出进化过程图
         # Plot.plt_evolve(self, generations, data_avg, data_best)
         # 输出最优方案的甘特图
-        Plot.plt_gantt(best)
+        Plot.plt_gantt(current_best)

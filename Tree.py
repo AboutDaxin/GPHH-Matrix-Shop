@@ -59,22 +59,26 @@ class Node:
 
     # 实例化方法——full生成法
     # 总结：生成完整结构树，全按最大深度生成，叶节点为LEAVES参数，非叶节点为OPERATORS参数
-    def full(self, depth_limit):
-        # 如果此时的深度参数已变为0，则op为LEAVES中一个随机项
-        if depth_limit == 0:
-            self.op = PT
-        # 深度参数不是0时，op属性为OPERATORS中一个随机项
-        else:
-            self.op = choice(OPERATORS)
-            # 定义节点的“左”为一个Node类，并对左节点递归执行full生成，limit减1，直到0选取LEAVES节点
-            self.left = Node()
-            self.left.full(depth_limit - 1)
-            # 右节点同上
-            self.right = Node()
-            self.right.full(depth_limit - 1)
-        # 如果节点的op是一个常系数（LEAVES中），则节点的val值为一个01随机数（保留3位小数）
-        if self.op == CONST:
-            self.val = round(random(), 3)
+    def full(self, routing, sequencing):
+        self.left = Node()
+        self.left.op = routing
+        self.right = Node()
+        self.right.op = sequencing
+        # # 如果此时的深度参数已变为0，则op为LEAVES中一个随机项
+        # if depth_limit == 0:
+        #     self.op = PT
+        # # 深度参数不是0时，op属性为OPERATORS中一个随机项
+        # else:
+        #     self.op = choice(OPERATORS)
+        #     # 定义节点的“左”为一个Node类，并对左节点递归执行full生成，limit减1，直到0选取LEAVES节点
+        #     self.left = Node()
+        #     self.left.full(depth_limit - 1)
+        #     # 右节点同上
+        #     self.right = Node()
+        #     self.right.full(depth_limit - 1)
+        # # 如果节点的op是一个常系数（LEAVES中），则节点的val值为一个01随机数（保留3位小数）
+        # if self.op == CONST:
+        #     self.val = round(random(), 3)
 
     # 实例化方法——选择节点
     # 总结：返还Node的随机节点被node替换后的新Node）
@@ -299,8 +303,8 @@ class Individual:
         self.root.grow(depth)
 
     # 实例化方法——同上
-    def full(self, depth):
-        self.root.full(depth)
+    def full(self, routing, sequencing):
+        self.root.full(routing, sequencing)
 
     # 实例化方法——调用Node类的重组方法
     def recombine(self, other):
