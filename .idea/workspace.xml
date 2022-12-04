@@ -154,6 +154,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.Input_outside (1)" />
+      <item itemvalue="Python.Instance" />
+      <item itemvalue="Python.Tree" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.test" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
