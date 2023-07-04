@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 from statistics import mean
 import numpy as np
+import pandas as pd
+import os
 
 
 # def plt_evolve(GP, generations, data_avg, data_best):
@@ -81,8 +83,11 @@ def plt_gantt(best, number):
 
 
 # 生成目标比较图
-def plt_compare(GP0, generations0, data_avg0, data_best0, GP1, generations1, data_avg1, data_best1):
+def plt_compare(GP0, generations0, data_avg0, data_best0, data_time0, data_complexity0,
+                GP1, generations1, data_avg1, data_best1, data_time1, data_complexity1):
+    # 画个演化过程比较图
     plt.figure('comparison_objective')
+    # 第一组
     # map：映射，让data中的元素依次使用mean方法执行，返还值生成一个列表
     # 此处将data_avg中的每一个列表取平均值(run次)，生成一个新列表(还是共52个元素)
     data_avg0 = [i for i in map(mean, data_avg0)]
@@ -95,7 +100,7 @@ def plt_compare(GP0, generations0, data_avg0, data_best0, GP1, generations1, dat
     # 输出代数与平均值和最优值的图像，横轴为评估次数，纵轴为适应度
     plt.plot(x0, data_avg0, label='Enable_average')
     plt.plot(x0, data_best0, label='Enable_best')
-
+    # 第二组
     data_avg1 = [i for i in map(mean, data_avg1)]
     data_best1 = [i for i in map(mean, data_best1)]
     # 取相反数，绘图用
@@ -107,6 +112,39 @@ def plt_compare(GP0, generations0, data_avg0, data_best0, GP1, generations1, dat
     plt.legend()
     plt.xlabel('Evaluations')
     plt.ylabel('Objectives')
+
+    # 画个演化时间比较图
+    plt.figure('time cost comparison ')
+    # 第一组
+    data_time0 = [i for i in map(mean, data_time0)]
+    xt0 = range(generations0)
+    plt.plot(xt0, data_time0, label='TTGP time cost')
+    # 第二组
+    data_time1 = [i for i in map(mean, data_time1)]
+    xt1 = range(generations1)
+    plt.plot(xt1, data_time1, label='TTGP-ISP time cost')
+    plt.legend()
+    plt.xlabel('Evaluations')
+    plt.ylabel('Time')
+
+    # 画个复杂度比较图
+    plt.figure('complexity comparison')
+    # 第一组
+    data_complexity0 = [i for i in map(mean, data_complexity0)]
+    xc0 = range(generations0)
+    plt.plot(xc0, data_complexity0, label='TTGP complexity')
+    # 第二组
+    data_complexity1 = [i for i in map(mean, data_complexity1)]
+    xc1 = range(generations1)
+    plt.plot(xc1, data_complexity1, label='TTGP-ISP complexity')
+    plt.legend()
+    plt.xlabel('Evaluations')
+    plt.ylabel('Complexity')
+
+    # 输出时间进化数据表格
+    df = pd.DataFrame({"generations": xt0, "TTGP time": data_time0, "TTGP-ISP time": data_time1})
+    df = df.set_index('generations')
+    df.to_excel(os.getcwd() + '\\data_temp.xlsx')
 
 
 # 生成运算时间比较图

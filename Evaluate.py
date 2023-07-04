@@ -6,16 +6,16 @@ from statistics import mean
 
 
 # 实例化方法——适应度评估（Individual类的evaluate）（核心）
-def evaluate(individual, problems_origin, whether_complexity):
+def evaluate(individual, problems_origin, test_index):
     # 复制源问题
     problems = copy.deepcopy(problems_origin)
     # 用于存储画gantt图用字典的key和value
     draw_key = []
     draw_value = []
     # 是否考虑复杂度函数
-    whether_complexity = whether_complexity
+    test_index = test_index
 
-    # 遍历problems中的每一项元素，执行评估（目前只有1个problem）
+    # 遍历problems中的每一项元素（目前只有1个problem）
     for problem in problems:
         # hyper_period属性传参
         hyper_period = problem.hyper_period
@@ -34,6 +34,11 @@ def evaluate(individual, problems_origin, whether_complexity):
         prcs_time_last = 0
         # 初始化总作业序列列表
         stations = [station for station in problem.stations]
+        # 计算最大释放时间
+        task_release = []
+        for i in problem.tasks:
+            task_release.append(i.release)
+        release_max = max(task_release)
 
         # 遍历每个时刻，执行过程仿真
         for time in range(hyper_period + 1):
@@ -156,7 +161,7 @@ def evaluate(individual, problems_origin, whether_complexity):
                                 missed_deadlines += 1
                 # 判断是否执行完毕
                 prcs_time_now = process_time
-                if prcs_time_last == prcs_time_now:
+                if prcs_time_last == prcs_time_now and prcs_time_last > release_max:
                     makespan = time
                     have_finished = True
                 else:
@@ -166,7 +171,7 @@ def evaluate(individual, problems_origin, whether_complexity):
         individual.fitnesses.append(
             (-missed_deadlines - process_time - makespan)/3
             - ((missed_deadlines + process_time + makespan)/3 * 0.02 * individual.tree_complexity()
-               if whether_complexity == 0 else 0))
+               if test_index == 0 else 0 * individual.tree_complexity()))
         # 添加个体对本问题的优化目标值（不考虑复杂度函数影响）
         individual.objectives.append((-missed_deadlines - process_time - makespan)/3)
         # 添加各项目标函数值

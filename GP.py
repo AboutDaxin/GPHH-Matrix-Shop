@@ -11,11 +11,11 @@ import time
 # 设置一个常数K，用于后边锦标赛法选择子代
 K_CONST = 10
 # 最大个体评估次数（共26代，3100个个体，不包含初代500个）
-MAX_EVALUATIONS = 3000
+MAX_EVALUATIONS = 2000
 # 最小步长(弃用)
 MIN_DELTA = 0.001
 # 运行多少次
-RUNS = 3
+RUNS = 1
 
 
 # 定义GP类
@@ -30,6 +30,8 @@ class GP:
         self.generations = None
         self.data_avg = None
         self.data_best = None
+        self.data_time = None
+        self.data_complexity = None
         self.time_cost = None
 
         # grow方法生成半个种群
@@ -135,12 +137,12 @@ class GP:
         self.population = new_pop
 
     # 定义实例化方法——问题的适应度评估(GP类)
-    def evaluate(self, problems, whether_complexity):
-        whether_complexity = whether_complexity
+    def evaluate(self, problems, test_index):
+        test_index = test_index
         # 对子代中的个体进行遍历
         for individual in self.children:
             # 对每个个体执行核心evaluate(Individual类)方法
-            Evaluate.evaluate(individual, problems, whether_complexity)
+            Evaluate.evaluate(individual, problems, test_index)
             # 执行一次循环，评估次数参数+1
             self.evaluations += 1
 
@@ -150,7 +152,7 @@ class GP:
         return self.evaluations <= MAX_EVALUATIONS
 
     # 定义实例化方法——运行
-    def run(self, problems, whether_complexity):
+    def run(self, problems, test_index):
         # 记录代码运行时间
         start_time = time.process_time()
         # 设置bests为一个空列表，用于存储最优结果
@@ -161,6 +163,8 @@ class GP:
         data_best = [[] for _ in range(generations)]
         # 同上
         data_avg = [[] for _ in range(generations)]
+        data_time = [[] for _ in range(generations)]
+        data_complexity = [[] for _ in range(generations)]
 
         # 执行RUN次循环
         for run in range(RUNS):
@@ -169,40 +173,53 @@ class GP:
             # 初次评估，因为evaluate方法是针对children属性执行的，所以将population暂时转移了一下
             self.children = self.population
             # 执行适应度评估（GP类）
-            self.evaluate(problems, whether_complexity)
+            self.evaluate(problems, test_index)
             self.population = self.children
-            # 列表生成式，遍历population中每个元素的fitness（Tree模块中生成），生成列表fitness_data
+            # 列表生成式，遍历population中每个元素的fitness（Tree模块中生成），生成目标值列表
             objective_data = [i.fitness for i in self.population]
+            # 同上，生成复杂度列表
+            complexity_data = [i.size for i in self.population]
             # 在data_best的第一个列表中添加最大的适应度值
             data_best[0].append(max(objective_data))
             # 在data_avg的第一个列表中添加平均适应度值
             data_avg[0].append(mean(objective_data))
+            # 同上
+            data_time[0].append(0)
+            data_complexity[0].append(mean(complexity_data))
 
             # 正式执行进化操作
             # 先设置一个新变量
             generation = 1
-            # 判断not_finished方法的bool值，若评估次数evaluations<=2000则继续执行
-            # 注：每一次evaluations值会加20 ，初始化种群后为1000。因此跳出时，evaluations值为2020，而generation此时正好为52
+            # 完成演化，判断not_finished方法的bool值，若评估次数evaluations<=2000则继续执行
             while self.not_finished():
+                # 记录每代演化时间
+                time1 = time.process_time()
                 # 执行父代选择方法
                 self.parentSelection()
                 # 执行子代生成方法
                 self.childGeneration()
                 # 更新适应度评估（GP类，此方法执行一次，evaluations值会+20）
-                self.evaluate(problems, whether_complexity)
+                self.evaluate(problems, test_index)
                 # 执行再引入方法
                 self.reintroduction()
                 # 执行生存选择方法
                 self.survivalSelection()
+                # 记录每代演化时间
+                time2 = time.process_time()
 
                 # 记录进化过程数据
                 # 列表生成式，遍历population中每个Individual的fitness，生成列表fitness_data
                 objective_data = [i.objective for i in self.population]
+                complexity_data = [i.size for i in self.population]
                 # 在data_best的第generation（2-**）个列表中添加最大的适应度值
                 data_best[generation].append(max(objective_data))
                 # 在data_avg的第generation（2-**）个列表中添加平均适应度值
                 data_avg[generation].append(mean(objective_data))
-                # 执行上述操作后，代数generation加1。跳出时正好为52，填满data列表
+                # 记录每代演化时间
+                data_time[generation].append(time2-time1)
+                # 记录每代平均复杂度
+                data_complexity[generation].append(mean(complexity_data))
+                # 执行上述操作后，代数generation加1。跳出时填满data列表
                 generation += 1
 
             # 本轮运行完成，输出优化信息
@@ -210,7 +227,7 @@ class GP:
             print('==== RUN {} ===='.format(run))
             # 设置当前最佳为population中的最优Individual（富比较）
             current_best = max(self.population)
-            # 输出最优及平均Individual的适应度值和heuristic格式等信息
+            # 输出终代最优及平均Individual的适应度值和heuristic格式等信息
             print('best fitness: {}\nbest objective: {}\nmean objective: {}'
                   '\n(Min-based)heuristic-routing: {}\n(Min-based)heuristic-sequencing: {}'.
                   format(current_best.fitness, current_best.objective, data_avg[generation-1],
@@ -224,7 +241,7 @@ class GP:
             # 列表bests中添加本轮的最优值
             bests.append(current_best)
 
-        # 记录代码运行时间
+        # 记录总演化时间
         end_time = time.process_time()
         # 结束上述所有轮运行，提示执行全局优化
         print('==== GLOBAL OPTIMUM ====')
@@ -246,7 +263,9 @@ class GP:
         self.generations = generations
         self.data_avg = data_avg
         self.data_best = data_best
-        self.time_cost = round(end_time-start_time, 5)
+        self.data_time = data_time
+        self.data_complexity = data_complexity
+        self.time_cost = round((end_time-start_time)/RUNS, 4)
         # # 输出进化过程图
         # Plot.plt_evolve(self, generations, data_avg, data_best)
         # 输出最优方案的甘特图
