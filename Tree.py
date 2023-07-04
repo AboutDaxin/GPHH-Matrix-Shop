@@ -41,9 +41,9 @@ class Node:
         # 深度参数不是0时，op为OPSUM（OPERATORS并LEAVES）中的一个随机项
         else:
             # 保证深度>1的情况下，有0.5的概率在节点选择操作算子
-            if depth_limit == 5 or round(random(), 3) < 0.5:
+            if depth_limit == 4 or round(random(), 3) < 0.8:
                 self.op = choice(OPERATORS)
-            # 有0.5的概率选择叶节点
+            # 有概率选择叶节点
             else:
                 self.op = choice(LEAVES)
         # 如果op选中的是OPERATORS中的项，则对左右节点进行递归，limit减1，
@@ -308,6 +308,14 @@ class Individual:
     # 实例化方法——调用Node类的重组方法
     def recombine(self, other):
         self.root.recombine(other.root)
+        return self
+
+    def left_recombine(self, other):
+        self.root.left.recombine(other.root.left)
+        return self
+
+    def right_recombine(self, other):
+        self.root.right.recombine(other.root.right)
         return self
 
     # 实例化方法——个体复杂度

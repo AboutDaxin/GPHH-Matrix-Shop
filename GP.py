@@ -10,8 +10,8 @@ import time
 
 # 设置一个常数K，用于后边锦标赛法选择子代
 K_CONST = 10
-# 最大个体评估次数（共26代，3100个个体，不包含初代500个）
-MAX_EVALUATIONS = 2000
+# 最大个体评估次数（包含初代的个体）
+MAX_EVALUATIONS = 2500
 # 最小步长(弃用)
 MIN_DELTA = 0.001
 # 运行多少次
@@ -20,8 +20,8 @@ RUNS = 1
 
 # 定义GP类
 class GP:
-    # 初始化方法：在GP类进行实例化时执行。参数为：种群规模500，子代规模100，变异率0.1，复制率为0.05，简化参数0.5
-    def __init__(self, number, population_size=500, children_size=100, mutation=0.15, duplication=0.05, parsimony=0.5):
+    # 初始化方法：在GP类进行实例化时执行。参数为如下，简化参数弃用
+    def __init__(self, number, population_size=100, children_size=100, mutation=0.05, duplication=0.1, parsimony=0.5):
         # 生成此实例的一个种群
         # 类属性：定义实例的种群(population)为一个列表
         self.number = number
@@ -40,7 +40,7 @@ class GP:
             # 实例化个体，使用Tree模块的Individual类
             individual = Individual(parsimony)
             # 使用grow方法形成个体，使用Tree模块的grow函数
-            individual.grow(5)
+            individual.grow(4)
             # 在种群列表中增加这个个体
             self.population.append(individual)
 
@@ -50,7 +50,7 @@ class GP:
             # 实例化个体，使用Tree模块的Individual类
             individual = Individual(parsimony)
             # 使用full方法形成个体，使用Tree模块的full函数
-            individual.full(5)
+            individual.full(4)
             # 在种群列表中增加这个个体，完成整个种群的构建
             self.population.append(individual)
 
@@ -83,7 +83,7 @@ class GP:
     def childGeneration(self):
         # 设置实例的children属性为一个空列表
         self.children = []
-        # 执行一个生成子代的循环，次数为要产生的子代的规模**，用于逐个判断是否要进行变异
+        # 执行一个生成子代的循环，次数为要产生的子代的规模，用于逐个判断是否要进行变异
         for i in range(self.children_size):
             temprandom = random()
             # 变异：生成一个随机数，小于变异概率0.05就执行下列变异操作
@@ -106,12 +106,24 @@ class GP:
                 self.children.append(parent_copy)
             # 执行交叉操作
             else:
-                # 让第i个个体跟它后一个进行交叉
-                parent_copy = deepcopy(self.parents[i]).recombine(self.parents[randrange(0, self.children_size, 1)])
-                # 设置取出个体的stats属性是一个空列表
-                parent_copy.stats = []
-                # 在children列表中添加该个体
-                self.children.append(parent_copy)
+                # TTGP
+                if self.number == 0 or 2:
+                    # 让第i个个体跟一个个体进行交叉
+                    parent_copy = deepcopy(self.parents[i]).recombine(self.parents[randrange(0, self.children_size, 1)])
+                    # 设置取出个体的stats属性是一个空列表
+                    parent_copy.stats = []
+                    # 在children列表中添加该个体
+                    self.children.append(parent_copy)
+                # CCGP
+                elif self.number == 1 or 3:
+                    # 让第i个个体左右分别跟随机一个进行交叉
+                    parent_copy = deepcopy(self.parents[i]).left_recombine(
+                        self.parents[randrange(0, self.children_size, 1)])
+                    parent_copy = parent_copy.right_recombine(self.parents[randrange(0, self.children_size, 1)])
+                    # 设置取出个体的stats属性是一个空列表
+                    parent_copy.stats = []
+                    # 在children列表中添加该个体
+                    self.children.append(parent_copy)
 
     # 定义实例化方法——再引入
     def reintroduction(self):
@@ -149,16 +161,17 @@ class GP:
     # 定义实例化方法——未结束
     def not_finished(self):
         # 返还评估次数小于等于最大评估次数的布尔值
-        return self.evaluations <= MAX_EVALUATIONS
+        return self.evaluations < MAX_EVALUATIONS
 
     # 定义实例化方法——运行
     def run(self, problems, test_index):
+        print('start:'+str(test_index))
         # 记录代码运行时间
         start_time = time.process_time()
         # 设置bests为一个空列表，用于存储最优结果
         bests = []
-        # 代数：最大评估次数减种群初始规模，除以子代规模，结果向上取整加2，设结果为x（保证与generation变量的匹配性）。
-        generations = ceil((MAX_EVALUATIONS - self.population_size) / self.children_size) + 2
+        # 代数：最大评估次数减种群初始规模，除以子代规模，结果向上取整加1，设结果为x（保证与generation变量的匹配性）。
+        generations = ceil((MAX_EVALUATIONS - self.population_size) / self.children_size) + 1
         # 生成了一个含x个空列表的列表，用于存储进化过程的数据
         data_best = [[] for _ in range(generations)]
         # 同上
@@ -190,8 +203,9 @@ class GP:
             # 正式执行进化操作
             # 先设置一个新变量
             generation = 1
-            # 完成演化，判断not_finished方法的bool值，若评估次数evaluations<=2000则继续执行
+            # 完成演化，判断not_finished方法的bool值，若评估次数evaluations<=设定值则继续执行
             while self.not_finished():
+                print('evaluation'+str(generation))
                 # 记录每代演化时间
                 time1 = time.process_time()
                 # 执行父代选择方法
