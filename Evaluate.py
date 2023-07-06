@@ -169,7 +169,7 @@ def evaluate(individual, problems_origin, test_index):
 
         # 添加个体对本问题的适应度值
         obj = (-missed_deadlines - process_time - makespan)/3
-        if test_index == (1 or 3):
+        if test_index == 1 or test_index == 3:
             ftns = obj + obj * 0.2 * individual.tree_complexity()
         else:
             ftns = obj + 0 * individual.tree_complexity()
