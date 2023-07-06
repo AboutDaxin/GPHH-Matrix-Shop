@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="v1.1.5&#10;大改，增加图">
+    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="v1.1.5 搞了4组对比试验">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Evaluate.py" beforeDir="false" afterPath="$PROJECT_DIR$/Evaluate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GP.py" beforeDir="false" afterPath="$PROJECT_DIR$/GP.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Input00.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Input00.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Input_outside.py" beforeDir="false" afterPath="$PROJECT_DIR$/Input_outside.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Instance.py" beforeDir="false" afterPath="$PROJECT_DIR$/Instance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Input01.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Input01.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Plot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tree.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,15 +46,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/PCTemp/Reconfigurable-FJSSP",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PCTemp/Reconfigurable-FJSSP&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.main">
     <configuration name="Input_outside (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="GPHH for Matrix Shop" />
@@ -318,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688450217271</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="v1.1.5 搞了4组对比试验">
+      <created>1688466311114</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1688466311114</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -361,20 +366,26 @@
     <MESSAGE value="v1.1.3&#10;添加了提琴图" />
     <MESSAGE value="v1.1.4&#10;添加了目标平均值的输出功能；&#10;hyper_period参数应设定大一些，否则会出错" />
     <MESSAGE value="v1.1.5&#10;大改，增加图" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.1.5&#10;大改，增加图" />
+    <MESSAGE value="v1.1.5 搞了4组对比试验" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.1.5 搞了4组对比试验" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Plot.py</url>
-          <line>188</line>
+          <line>189</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Plot.py</url>
           <line>102</line>
           <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Evaluate.py</url>
+          <line>175</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

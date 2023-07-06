@@ -9,19 +9,19 @@ import time
 
 
 # 设置一个常数K，用于后边锦标赛法选择子代
-K_CONST = 10
+K_CONST = 5
 # 最大个体评估次数（包含初代的个体）
-MAX_EVALUATIONS = 2500
+MAX_EVALUATIONS = 2700
 # 最小步长(弃用)
 MIN_DELTA = 0.001
 # 运行多少次
-RUNS = 1
+RUNS = 10
 
 
 # 定义GP类
 class GP:
     # 初始化方法：在GP类进行实例化时执行。参数为如下，简化参数弃用
-    def __init__(self, number, population_size=100, children_size=100, mutation=0.05, duplication=0.1, parsimony=0.5):
+    def __init__(self, number, population_size=200, children_size=100, mutation=0.05, duplication=0.1, parsimony=0.5):
         # 生成此实例的一个种群
         # 类属性：定义实例的种群(population)为一个列表
         self.number = number
@@ -75,7 +75,7 @@ class GP:
         for _ in range(self.children_size):
             # 在parents列表中增加个体
             # 使用了random模块的sample方法，K_CONST是片段长度，前边设置为常数10
-            # sample方法：在整个列表（population）中随机取一个固定（10）长度的片段，并随机排列
+            # sample方法：在整个列表（population）中随机取一个固定长度的片段，并随机排列
             # 此处选择任意片段中的最大值加入parents，实现锦标赛选择法
             self.parents.append(max(sample(self.population, K_CONST)))
 
@@ -181,6 +181,7 @@ class GP:
 
         # 执行RUN次循环
         for run in range(RUNS):
+            start_time1 = time.process_time()
             # 执行初始化操作
             self.__init__(number=self.number)
             # 初次评估，因为evaluate方法是针对children属性执行的，所以将population暂时转移了一下
@@ -222,12 +223,12 @@ class GP:
                 time2 = time.process_time()
 
                 # 记录进化过程数据
-                # 列表生成式，遍历population中每个Individual的fitness，生成列表fitness_data
+                # 列表生成式，遍历population中每个Individual的目标值
                 objective_data = [i.objective for i in self.population]
                 complexity_data = [i.size for i in self.population]
-                # 在data_best的第generation（2-**）个列表中添加最大的适应度值
+                # 在data_best的第generation（2-**）个列表中添加最大目标值
                 data_best[generation].append(max(objective_data))
-                # 在data_avg的第generation（2-**）个列表中添加平均适应度值
+                # 在data_avg的第generation（2-**）个列表中添加平均目标值
                 data_avg[generation].append(mean(objective_data))
                 # 记录每代演化时间
                 data_time[generation].append(time2-time1)
@@ -235,6 +236,7 @@ class GP:
                 data_complexity[generation].append(mean(complexity_data))
                 # 执行上述操作后，代数generation加1。跳出时填满data列表
                 generation += 1
+            end_time1 = time.process_time()
 
             # 本轮运行完成，输出优化信息
             # 输出本次运行次数（占位符）
@@ -246,6 +248,7 @@ class GP:
                   '\n(Min-based)heuristic-routing: {}\n(Min-based)heuristic-sequencing: {}'.
                   format(current_best.fitness, current_best.objective, data_avg[generation-1],
                          current_best.root.left.string(), current_best.root.right.string()))
+            print('time cost:{}'.format(end_time1-start_time1))
 
             # 输出目标函数值
             print('total process time: {}\ntotal due time: {}\nmakespan: {}'.

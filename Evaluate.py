@@ -168,12 +168,14 @@ def evaluate(individual, problems_origin, test_index):
                     prcs_time_last = prcs_time_now
 
         # 添加个体对本问题的适应度值
-        individual.fitnesses.append(
-            (-missed_deadlines - process_time - makespan)/3
-            - ((missed_deadlines + process_time + makespan)/3 * 0.2 * individual.tree_complexity()
-               if test_index == 1 or 3 else 0 * individual.tree_complexity()))
+        obj = (-missed_deadlines - process_time - makespan)/3
+        if test_index == (1 or 3):
+            ftns = obj + obj * 0.2 * individual.tree_complexity()
+        else:
+            ftns = obj + 0 * individual.tree_complexity()
+        individual.fitnesses.append(ftns)
         # 添加个体对本问题的优化目标值（不考虑复杂度函数影响）
-        individual.objectives.append((-missed_deadlines - process_time - makespan)/3)
+        individual.objectives.append(obj)
         # 添加各项目标函数值
         individual.total_due_time = missed_deadlines
         individual.total_process_time = process_time

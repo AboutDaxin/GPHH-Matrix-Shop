@@ -106,24 +106,25 @@ def plt_compare(GP0, generations0, data_avg0, data_best0, data_time0, data_compl
     data_avg0 = [-i for i in data_avg0]
     # data_best0 = [-i for i in data_best0]
     # 生成画图x轴
-    x0 = np.arange(GP0.population_size, GP0.population_size + GP0.children_size * generations0, GP0.children_size)
+    # x0 = np.arange(GP0.population_size, GP0.population_size + GP0.children_size * generations0, GP0.children_size)
+    x0 = range(generations0)
     # 输出代数与平均值和最优值的图像，横轴为评估次数，纵轴为适应度
     plt.plot(x0, data_avg0, label='TTGP')
     # plt.plot(x0, data_best0, label='Enable_best')
     # 第二组
     data_avg1 = [i for i in map(mean, data_avg1)]
     data_avg1 = [-i for i in data_avg1]
-    x1 = np.arange(GP1.population_size, GP1.population_size + GP1.children_size * generations1, GP1.children_size)
+    x1 = range(generations1)
     plt.plot(x1, data_avg1, label='TTGP-ISP')
     # 第三组
     data_avg2 = [i for i in map(mean, data_avg2)]
     data_avg2 = [-i for i in data_avg2]
-    x2 = np.arange(GP2.population_size, GP2.population_size + GP2.children_size * generations2, GP2.children_size)
+    x2 = range(generations2)
     plt.plot(x2, data_avg2, label='CCGP')
     # 第四组
     data_avg3 = [i for i in map(mean, data_avg3)]
     data_avg3 = [-i for i in data_avg3]
-    x3 = np.arange(GP3.population_size, GP3.population_size + GP3.children_size * generations3, GP3.children_size)
+    x3 = range(generations3)
     plt.plot(x3, data_avg3, label='CCGP-ISP')
     # 加标注
     plt.legend()
@@ -137,29 +138,29 @@ def plt_compare(GP0, generations0, data_avg0, data_best0, data_time0, data_compl
     # 去掉第一个元素，0
     temp_data_time0 = copy.deepcopy(data_time0)
     temp_data_time0.pop(0)
-    xt0 = range(generations0-1)
+    xt0 = range(1, generations0)
     plt.plot(xt0, temp_data_time0, label='TTGP time cost')
     # 第二组
     data_time1 = [i for i in map(mean, data_time1)]
     temp_data_time1 = copy.deepcopy(data_time1)
     temp_data_time1.pop(0)
-    xt1 = range(generations1-1)
+    xt1 = range(1, generations1)
     plt.plot(xt1, temp_data_time1, label='TTGP-ISP time cost')
     # 第三组
     data_time2 = [i for i in map(mean, data_time2)]
     temp_data_time2 = copy.deepcopy(data_time2)
     temp_data_time2.pop(0)
-    xt2 = range(generations2-1)
+    xt2 = range(1, generations2)
     plt.plot(xt2, temp_data_time2, label='CCGP time cost')
     # 第四组
     data_time3 = [i for i in map(mean, data_time3)]
     temp_data_time3 = copy.deepcopy(data_time3)
     temp_data_time3.pop(0)
-    xt3 = range(generations3-1)
+    xt3 = range(1, generations3)
     plt.plot(xt3, temp_data_time3, label='CCGP-ISP time cost')
     # 加标注
     plt.legend()
-    plt.xlabel('Evaluations')
+    plt.xlabel('Generations')
     plt.ylabel('Time')
 
     # 画个复杂度比较图
