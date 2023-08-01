@@ -15,7 +15,7 @@ def Instance():
     output_data_complexity = []
     output_time_cost = []
     # 执行多次测试
-    for n in range(4):
+    for n in range(1):
         # 第几次试验
         test_index = n
         # 实例化一个gp，n为第几次运行
@@ -44,21 +44,21 @@ def Instance():
         output_time_cost.append(gp.time_cost)
 
     # 绘图对比收敛速度
-    Plot.plt_compare(output_gp[0], output_generations[0], output_data_avg[0], output_data_best[0],
-                     output_data_time[0], output_data_complexity[0],
-                     output_gp[1], output_generations[1], output_data_avg[1], output_data_best[1],
-                     output_data_time[1], output_data_complexity[1],
-                     output_gp[2], output_generations[2], output_data_avg[2], output_data_best[2],
-                     output_data_time[2], output_data_complexity[2],
-                     output_gp[3], output_generations[3], output_data_avg[3], output_data_best[3],
-                     output_data_time[3], output_data_complexity[3]
-                     )
+    # Plot.plt_compare(output_gp[0], output_generations[0], output_data_avg[0], output_data_best[0],
+    #                  output_data_time[0], output_data_complexity[0],
+    #                  output_gp[1], output_generations[1], output_data_avg[1], output_data_best[1],
+    #                  output_data_time[1], output_data_complexity[1],
+    #                  output_gp[2], output_generations[2], output_data_avg[2], output_data_best[2],
+    #                  output_data_time[2], output_data_complexity[2],
+    #                  output_gp[3], output_generations[3], output_data_avg[3], output_data_best[3],
+    #                  output_data_time[3], output_data_complexity[3]
+    #                  )
 
     # 绘图对比计算时间
-    Plot.plt_process_time(output_time_cost[0], output_time_cost[1], output_time_cost[2], output_time_cost[3])
+    # Plot.plt_process_time(output_time_cost[0], output_time_cost[1], output_time_cost[2], output_time_cost[3])
 
     # 绘图10次独立运行的优化目标提琴图
-    Plot.plt_violin(output_data_avg[0][-1], output_data_best[0][-1], output_data_avg[1][-1], output_data_best[1][-1],
-                    output_data_avg[2][-1], output_data_best[2][-1], output_data_avg[3][-1], output_data_best[3][-1])
+    # Plot.plt_violin(output_data_avg[0][-1], output_data_best[0][-1], output_data_avg[1][-1], output_data_best[1][-1],
+    #                 output_data_avg[2][-1], output_data_best[2][-1], output_data_avg[3][-1], output_data_best[3][-1])
 
 

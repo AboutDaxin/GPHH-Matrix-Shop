@@ -11,7 +11,7 @@ import time
 # 设置一个常数K，用于后边锦标赛法选择子代
 K_CONST = 5
 # 最大个体评估次数（包含初代的个体）
-MAX_EVALUATIONS = 500
+MAX_EVALUATIONS = 100
 # 最小步长(弃用)
 MIN_DELTA = 0.001
 # 运行多少次
@@ -21,7 +21,7 @@ RUNS = 1
 # 定义GP类
 class GP:
     # 初始化方法：在GP类进行实例化时执行。参数为如下，简化参数弃用
-    def __init__(self, number, population_size=200, children_size=100, mutation=0.05, duplication=0.1, parsimony=0.5):
+    def __init__(self, number, population_size=50, children_size=50, mutation=0.05, duplication=0.1, parsimony=0.5):
         # 生成此实例的一个种群
         # 类属性：定义实例的种群(population)为一个列表
         self.number = number
@@ -264,6 +264,7 @@ class GP:
         print('==== GLOBAL OPTIMUM ====')
         # 取bests列表中的最大值
         best = max(bests)
+        decoding_array = best.root.choose_node()
         # 输出最优值的适应度和根字符
         print('best fitness: {}\nbest objective: {}'
               '\n(Min-based)heuristic-routing: {}\n(Min-based)heuristic-sequencing: {}'.

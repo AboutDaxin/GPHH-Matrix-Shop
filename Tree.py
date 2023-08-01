@@ -102,53 +102,54 @@ class Node:
         tree_array = [1]
         # 对当前节点执行choose_r，生成辅助列表tree_array
         tree_array = choose_r(tree_array, self, 1)
-        # 从树列表中随机抽取一个元素，代表选中的节点索引
-        random_node = 1 if tree_array == [] else choice(tree_array)
+        return tree_array
+        # # 从树列表中随机抽取一个元素，代表选中的节点索引
+        # random_node = 1 if tree_array == [] else choice(tree_array)
 
-        # 开始生成选中节点的索引
-        random_node1 = random_node
-        # 初始化一个父列表，用于存放选中节点的所有父节点的索引（不包括根节点）
-        parent_list = []
-        # 当选中的节点不是根节点时进行以下循环
-        while random_node1 != 1:
-            # 对节点元素进行地板除，即找到选中节点的上一层节点索引
-            random_node1 = random_node1 // 2
-            # 在父列表中增加这一索引，到根节点[1]结束（包括1）
-            parent_list.append(random_node1)
-        # 删除父列表最后添加的那个元素，即根节点[1]
-        if parent_list:
-            parent_list.pop()
-        # 翻转父列表中的元素次序，变为从小到大
-        parent_list.reverse()
-
-        # 定义一个current_node为Node实例自身
-        current_node = self
-        # 使用随机所选节点对当前节点进行替代（根据父列表，是偶数走一次左节点，是奇数走一次右节点）
-        for index in range(len(parent_list)):
-            if index == len(parent_list):
-                break
-            current_node = current_node.left if parent_list[index] % 2 == 0 else current_node.right
-            # 至此，current_node已变为Node实例的一个随机子节点的父节点
-
-        # 如果graft为true则执行交叉
-        if graft:
-            # 如果随机选中的节点是根节点
-            if random_node == 1:
-                # 对实例使用参数中输入的节点进行代替
-                self = deepcopy(node)
-            # 随机选中的节点不是根节点时
-            else:
-                # 如果所选节点属于左节点
-                if random_node % 2 == 0:
-                    # 将输入节点移植到current_node的左节点
-                    current_node.left = deepcopy(node)
-                # 如果所选节点是右节点，同上
-                else:
-                    current_node.right = deepcopy(node)
-        # 返还所选节点
-            return self
-        else:
-            return current_node
+        # # 开始生成选中节点的索引
+        # random_node1 = random_node
+        # # 初始化一个父列表，用于存放选中节点的所有父节点的索引（不包括根节点）
+        # parent_list = []
+        # # 当选中的节点不是根节点时进行以下循环
+        # while random_node1 != 1:
+        #     # 对节点元素进行地板除，即找到选中节点的上一层节点索引
+        #     random_node1 = random_node1 // 2
+        #     # 在父列表中增加这一索引，到根节点[1]结束（包括1）
+        #     parent_list.append(random_node1)
+        # # 删除父列表最后添加的那个元素，即根节点[1]
+        # if parent_list:
+        #     parent_list.pop()
+        # # 翻转父列表中的元素次序，变为从小到大
+        # parent_list.reverse()
+        #
+        # # 定义一个current_node为Node实例自身
+        # current_node = self
+        # # 使用随机所选节点对当前节点进行替代（根据父列表，是偶数走一次左节点，是奇数走一次右节点）
+        # for index in range(len(parent_list)):
+        #     if index == len(parent_list):
+        #         break
+        #     current_node = current_node.left if parent_list[index] % 2 == 0 else current_node.right
+        #     # 至此，current_node已变为Node实例的一个随机子节点的父节点
+        #
+        # # 如果graft为true则执行交叉
+        # if graft:
+        #     # 如果随机选中的节点是根节点
+        #     if random_node == 1:
+        #         # 对实例使用参数中输入的节点进行代替
+        #         self = deepcopy(node)
+        #     # 随机选中的节点不是根节点时
+        #     else:
+        #         # 如果所选节点属于左节点
+        #         if random_node % 2 == 0:
+        #             # 将输入节点移植到current_node的左节点
+        #             current_node.left = deepcopy(node)
+        #         # 如果所选节点是右节点，同上
+        #         else:
+        #             current_node.right = deepcopy(node)
+        # # 返还所选节点
+        #     return self
+        # else:
+        #     return current_node
 
     # 实例化方法——重组
     def recombine(self, other):

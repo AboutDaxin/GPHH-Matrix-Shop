@@ -88,6 +88,7 @@ def plt_gantt(best, number):
         plt.title("Gantt CCGP-ISP")
     plt.xlabel("Process Time /h")
     plt.ylabel("Cells")
+    plt.show()
 
 
 # 生成目标比较图
@@ -229,4 +230,3 @@ def plt_violin(data_avg0, data_best0, data_avg1, data_best1, data_avg2, data_bes
     plt.violinplot([data_best0, data_best1, data_best2, data_best3], showmeans=True, showmedians=True)
     plt.xticks([1, 2, 3, 4], ['TTGP Best', 'TTGP-ISP Best', 'CCGP Best', 'CCGP-ISP Best'])
 
-    plt.show()

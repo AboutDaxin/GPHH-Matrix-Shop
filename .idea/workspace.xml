@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="v1.1.8 提交稿">
+    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="如何存储规则？">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GP.py" beforeDir="false" afterPath="$PROJECT_DIR$/GP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Input00.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Input00.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Input_outside.py" beforeDir="false" afterPath="$PROJECT_DIR$/Input_outside.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Instance.py" beforeDir="false" afterPath="$PROJECT_DIR$/Instance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tree.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +33,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="based_heuristic_evaluate" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -332,7 +338,21 @@
       <option name="project" value="LOCAL" />
       <updated>1688660081418</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="如何存储规则？">
+      <created>1690872474130</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1690872474130</updated>
+    </task>
+    <task id="LOCAL-00023" summary="如何存储规则？">
+      <created>1690872570837</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1690872570837</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -346,7 +366,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="v1.1" />
+                        <option value="origin/Storage_heuristic" />
                       </list>
                     </value>
                   </entry>
@@ -378,25 +398,21 @@
     <MESSAGE value="v1.1.5 搞了4组对比试验" />
     <MESSAGE value="v1.1.6 解决了一个bug，fitness跟objective一样" />
     <MESSAGE value="v1.1.7 最后一组！" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1.1.7 最后一组！" />
+    <MESSAGE value="如何存储规则？" />
+    <option name="LAST_COMMIT_MESSAGE" value="如何存储规则？" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Plot.py</url>
-          <line>189</line>
-          <option name="timeStamp" value="22" />
+          <url>file://$PROJECT_DIR$/GP.py</url>
+          <line>289</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Plot.py</url>
-          <line>102</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Evaluate.py</url>
-          <line>170</line>
-          <option name="timeStamp" value="26" />
+          <url>file://$PROJECT_DIR$/GP.py</url>
+          <line>266</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
