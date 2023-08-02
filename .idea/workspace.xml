@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="生成了解码位置列表">
+    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="完成解码，并生成了调度表">
+      <change afterPath="$PROJECT_DIR$/Reload heuristic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GP.py" beforeDir="false" afterPath="$PROJECT_DIR$/GP.py" afterDir="false" />
     </list>
@@ -28,7 +29,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="920be0f6653cb9a37919f6bae3d2876e79623a9f" />
+        <entry key="$PROJECT_DIR$" value="Using_heuristic" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -354,7 +355,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690880297906</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="完成解码，并生成了调度表">
+      <created>1690954886286</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1690954886286</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -402,15 +410,16 @@
     <MESSAGE value="v1.1.7 最后一组！" />
     <MESSAGE value="如何存储规则？" />
     <MESSAGE value="生成了解码位置列表" />
-    <option name="LAST_COMMIT_MESSAGE" value="生成了解码位置列表" />
+    <MESSAGE value="完成解码，并生成了调度表" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成解码，并生成了调度表" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/GP.py</url>
-          <line>285</line>
-          <option name="timeStamp" value="40" />
+          <line>270</line>
+          <option name="timeStamp" value="49" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

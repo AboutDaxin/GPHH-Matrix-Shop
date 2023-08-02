@@ -267,7 +267,11 @@ class GP:
         # 取bests列表中的最大值
         best = max(bests)
         decoding_array1 = best.root.decoding_index()
+        decoding_array1 = [str(i) for i in decoding_array1]
+        decoding_array1 = ','.join(decoding_array1)
         decoding_array2 = best.root.decoding_operation()
+        decoding_array2 = [str(i) for i in decoding_array2]
+        decoding_array2 = ','.join(decoding_array2)
         decoding_array3 = best.root.left.string()
         decoding_array4 = best.root.right.string()
         # 输出heuristic数据表格
