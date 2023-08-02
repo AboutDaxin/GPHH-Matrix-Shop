@@ -76,6 +76,56 @@ class Node:
         if self.op == CONST:
             self.val = round(random(), 3)
 
+    # 实例化方法——生成解码索引
+    def decoding_index(self):
+        # 总结：该方法返还一个树结构列表，列表中的索引数字代表了树结构特定位置节点（以层定位，根节点为1，左节点偶，右节点奇）
+        def choose_r(tree_array1, node1, i):
+            # 如果节点实例的左节点非空且不是叶节点执行以下操作
+            if node1.left is not None and node1.op not in LEAVES:
+                # 下一个索引翻倍
+                next_idx = 2 * i
+                # 在当前辅助树列表中添加该索引
+                tree_array1.append(next_idx)
+                # 对当前实例左节点进行递归
+                tree_array1 = choose_r(tree_array1, node1.left, next_idx)
+            # 同上（除根节点外，左节点索引为偶数，右节点为奇数）
+            if node1.right is not None and node1.op not in LEAVES:
+                next_idx = (2 * i) + 1
+                tree_array1.append(next_idx)
+                tree_array1 = choose_r(tree_array1, node1.right, next_idx)
+            # 返还该树列表
+            return tree_array1
+        # 初始化一个树列表
+        tree_array = [1]
+        # 对当前节点执行choose_r，生成辅助列表tree_array
+        tree_array = choose_r(tree_array, self, 1)
+        return tree_array
+
+    # 实例化方法——生成解码算子
+    def decoding_operation(self):
+        # 总结：该方法返还一个树结构列表，列表中的索引数字代表了树结构特定位置节点（以层定位，根节点为1，左节点偶，右节点奇）
+        def choose_r(tree_array1, node1, i):
+            # 如果节点实例的左节点非空且不是叶节点执行以下操作
+            if node1.left is not None and node1.op not in LEAVES:
+                # 下一个索引翻倍
+                next_idx = 2 * i
+                # 在当前辅助树列表中添加该索引
+                tree_array1.append(node1.left.op)
+                # 对当前实例左节点进行递归
+                tree_array1 = choose_r(tree_array1, node1.left, next_idx)
+            # 同上（除根节点外，左节点索引为偶数，右节点为奇数）
+            if node1.right is not None and node1.op not in LEAVES:
+                next_idx = (2 * i) + 1
+                tree_array1.append(node1.right.op)
+                tree_array1 = choose_r(tree_array1, node1.right, next_idx)
+            # 返还该树列表
+            return tree_array1
+        # 初始化一个树列表，"7"代表"+"
+        tree_array = [self.op]
+        # 对当前节点执行choose_r，生成辅助列表tree_array
+        tree_array = choose_r(tree_array, self, 1)
+        return tree_array
+
     # 实例化方法——选择节点
     # 总结：返还Node的随机节点被node替换后的新Node）
     def choose_node(self, graft=False, node=None):
@@ -102,54 +152,53 @@ class Node:
         tree_array = [1]
         # 对当前节点执行choose_r，生成辅助列表tree_array
         tree_array = choose_r(tree_array, self, 1)
-        return tree_array
-        # # 从树列表中随机抽取一个元素，代表选中的节点索引
-        # random_node = 1 if tree_array == [] else choice(tree_array)
+        # 从树列表中随机抽取一个元素，代表选中的节点索引
+        random_node = 1 if tree_array == [] else choice(tree_array)
 
-        # # 开始生成选中节点的索引
-        # random_node1 = random_node
-        # # 初始化一个父列表，用于存放选中节点的所有父节点的索引（不包括根节点）
-        # parent_list = []
-        # # 当选中的节点不是根节点时进行以下循环
-        # while random_node1 != 1:
-        #     # 对节点元素进行地板除，即找到选中节点的上一层节点索引
-        #     random_node1 = random_node1 // 2
-        #     # 在父列表中增加这一索引，到根节点[1]结束（包括1）
-        #     parent_list.append(random_node1)
-        # # 删除父列表最后添加的那个元素，即根节点[1]
-        # if parent_list:
-        #     parent_list.pop()
-        # # 翻转父列表中的元素次序，变为从小到大
-        # parent_list.reverse()
-        #
-        # # 定义一个current_node为Node实例自身
-        # current_node = self
-        # # 使用随机所选节点对当前节点进行替代（根据父列表，是偶数走一次左节点，是奇数走一次右节点）
-        # for index in range(len(parent_list)):
-        #     if index == len(parent_list):
-        #         break
-        #     current_node = current_node.left if parent_list[index] % 2 == 0 else current_node.right
-        #     # 至此，current_node已变为Node实例的一个随机子节点的父节点
-        #
-        # # 如果graft为true则执行交叉
-        # if graft:
-        #     # 如果随机选中的节点是根节点
-        #     if random_node == 1:
-        #         # 对实例使用参数中输入的节点进行代替
-        #         self = deepcopy(node)
-        #     # 随机选中的节点不是根节点时
-        #     else:
-        #         # 如果所选节点属于左节点
-        #         if random_node % 2 == 0:
-        #             # 将输入节点移植到current_node的左节点
-        #             current_node.left = deepcopy(node)
-        #         # 如果所选节点是右节点，同上
-        #         else:
-        #             current_node.right = deepcopy(node)
-        # # 返还所选节点
-        #     return self
-        # else:
-        #     return current_node
+        # 开始生成选中节点的索引
+        random_node1 = random_node
+        # 初始化一个父列表，用于存放选中节点的所有父节点的索引（不包括根节点）
+        parent_list = []
+        # 当选中的节点不是根节点时进行以下循环
+        while random_node1 != 1:
+            # 对节点元素进行地板除，即找到选中节点的上一层节点索引
+            random_node1 = random_node1 // 2
+            # 在父列表中增加这一索引，到根节点[1]结束（包括1）
+            parent_list.append(random_node1)
+        # 删除父列表最后添加的那个元素，即根节点[1]
+        if parent_list:
+            parent_list.pop()
+        # 翻转父列表中的元素次序，变为从小到大
+        parent_list.reverse()
+
+        # 定义一个current_node为Node实例自身
+        current_node = self
+        # 使用随机所选节点对当前节点进行替代（根据父列表，是偶数走一次左节点，是奇数走一次右节点）
+        for index in range(len(parent_list)):
+            if index == len(parent_list):
+                break
+            current_node = current_node.left if parent_list[index] % 2 == 0 else current_node.right
+            # 至此，current_node已变为Node实例的一个随机子节点的父节点
+
+        # 如果graft为true则执行交叉
+        if graft:
+            # 如果随机选中的节点是根节点
+            if random_node == 1:
+                # 对实例使用参数中输入的节点进行代替
+                self = deepcopy(node)
+            # 随机选中的节点不是根节点时
+            else:
+                # 如果所选节点属于左节点
+                if random_node % 2 == 0:
+                    # 将输入节点移植到current_node的左节点
+                    current_node.left = deepcopy(node)
+                # 如果所选节点是右节点，同上
+                else:
+                    current_node.right = deepcopy(node)
+        # 返还所选节点
+            return self
+        else:
+            return current_node
 
     # 实例化方法——重组
     def recombine(self, other):

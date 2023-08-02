@@ -264,7 +264,8 @@ class GP:
         print('==== GLOBAL OPTIMUM ====')
         # 取bests列表中的最大值
         best = max(bests)
-        decoding_array = best.root.choose_node()
+        decoding_array1 = best.root.decoding_index()
+        decoding_array2 = best.root.decoding_operation()
         # 输出最优值的适应度和根字符
         print('best fitness: {}\nbest objective: {}'
               '\n(Min-based)heuristic-routing: {}\n(Min-based)heuristic-sequencing: {}'.
