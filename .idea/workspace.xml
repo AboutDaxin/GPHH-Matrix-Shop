@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="解码表改成了字符串格式">
-      <change afterPath="$PROJECT_DIR$/Using heuristic.py" afterDir="false" />
+    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="编码列表生成">
+      <change afterPath="$PROJECT_DIR$/Using_heuristic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GP.py" beforeDir="false" afterPath="$PROJECT_DIR$/GP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Using heuristic.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +53,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.Using heuristic">
+  <component name="RunManager" selected="Python.main">
     <configuration name="Instance" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="GPHH for Matrix Shop" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -94,7 +96,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Using heuristic" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Using_heuristic" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="GPHH for Matrix Shop" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -106,7 +108,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Using heuristic.py" />
+      <option name="SCRIPT_NAME" value="D:\PCTemp\GPHH-Matrix-Shop\Using_heuristic.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -158,7 +160,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Using heuristic" />
+      <item itemvalue="Python.Using_heuristic" />
       <item itemvalue="Python.Instance" />
       <item itemvalue="Python.Tree" />
       <item itemvalue="Python.main" />
@@ -166,8 +168,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Using heuristic" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.Using_heuristic" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.Tree" />
         <item itemvalue="Python.Instance" />
@@ -354,7 +356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690880297906</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="编码列表生成">
+      <created>1690958285758</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1690958285758</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -402,15 +411,16 @@
     <MESSAGE value="v1.1.7 最后一组！" />
     <MESSAGE value="如何存储规则？" />
     <MESSAGE value="生成了解码位置列表" />
-    <option name="LAST_COMMIT_MESSAGE" value="生成了解码位置列表" />
+    <MESSAGE value="编码列表生成" />
+    <option name="LAST_COMMIT_MESSAGE" value="编码列表生成" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/GP.py</url>
-          <line>285</line>
-          <option name="timeStamp" value="40" />
+          <url>file://$PROJECT_DIR$/Instance.py</url>
+          <line>34</line>
+          <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
