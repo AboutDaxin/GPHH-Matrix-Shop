@@ -6,6 +6,8 @@ import Evaluate
 from Tree import Individual
 import Plot
 import time
+import pandas as pd
+import os
 
 
 # 设置一个常数K，用于后边锦标赛法选择子代
@@ -266,6 +268,28 @@ class GP:
         best = max(bests)
         decoding_array1 = best.root.decoding_index()
         decoding_array2 = best.root.decoding_operation()
+        decoding_array3 = best.root.left.string()
+        decoding_array4 = best.root.right.string()
+        # 输出heuristic数据表格
+        df1 = pd.DataFrame({"Type": ['Index array', 'Operations array', 'Routing heuristic', 'Sequencing heuristic'],
+                           "Value": [decoding_array1, decoding_array2, decoding_array3, decoding_array4]})
+        # 生成调度表
+        data_jobs = []
+        for i in range(len(best.draw_value)):
+            data_job = []
+            for j in best.draw_key[i]:
+                data_job.append(j)
+            for j in best.draw_value[i]:
+                data_job.append(j)
+            data_jobs.append(data_job)
+        df2 = pd.DataFrame(data_jobs)
+        df2.rename(columns={0: 'Job index', 1: 'Operation index', 2: 'Station index', 3: 'Start time', 4: 'Finish time',
+                            5: 'Process time', 6: 'Setup time'}, inplace=True)
+        df2 = df2.sort_values(by='Job index', ascending=True)
+        with pd.ExcelWriter(os.getcwd() + '\\heuristic.xlsx') as writer:
+            df1.to_excel(writer, sheet_name='Heuristic', index=False)
+            df2.to_excel(writer, sheet_name='Schedule', index=False)
+
         # 输出最优值的适应度和根字符
         print('best fitness: {}\nbest objective: {}'
               '\n(Min-based)heuristic-routing: {}\n(Min-based)heuristic-sequencing: {}'.
