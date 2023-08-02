@@ -1,6 +1,7 @@
 from random import choice, random
 from copy import deepcopy
 from Operations import *
+import Using_heuristic
 
 
 # 定义Node类，包含该节点及其子节点的一系列属性和方法
@@ -59,72 +60,14 @@ class Node:
 
     # 实例化方法——full生成法
     # 总结：生成完整结构树，全按最大深度生成，叶节点为LEAVES参数，非叶节点为OPERATORS参数
-    def full(self, depth_limit):
-        # 如果此时的深度参数已变为0，则op为LEAVES中一个随机项
-        if depth_limit == 0:
-            self.op = choice(LEAVES)
-        # 深度参数不是0时，op属性为OPERATORS中一个随机项
-        else:
-            self.op = choice(OPERATORS)
-            # 定义节点的“左”为一个Node类，并对左节点递归执行full生成，limit减1，直到0选取LEAVES节点
-            self.left = Node()
-            self.left.full(depth_limit - 1)
-            # 右节点同上
-            self.right = Node()
-            self.right.full(depth_limit - 1)
-        # 如果节点的op是一个常系数（LEAVES中），则节点的val值为一个01随机数（保留3位小数）
-        if self.op == CONST:
-            self.val = round(random(), 3)
-
-    # 实例化方法——生成解码索引
-    def decoding_index(self):
-        # 总结：该方法返还一个树结构列表，列表中的索引数字代表了树结构特定位置节点（以层定位，根节点为1，左节点偶，右节点奇）
-        def choose_r(tree_array1, node1, i):
-            # 如果节点实例的左节点非空且不是叶节点执行以下操作
-            if node1.left is not None and node1.op not in LEAVES:
-                # 下一个索引翻倍
-                next_idx = 2 * i
-                # 在当前辅助树列表中添加该索引
-                tree_array1.append(next_idx)
-                # 对当前实例左节点进行递归
-                tree_array1 = choose_r(tree_array1, node1.left, next_idx)
-            # 同上（除根节点外，左节点索引为偶数，右节点为奇数）
-            if node1.right is not None and node1.op not in LEAVES:
-                next_idx = (2 * i) + 1
-                tree_array1.append(next_idx)
-                tree_array1 = choose_r(tree_array1, node1.right, next_idx)
-            # 返还该树列表
-            return tree_array1
-        # 初始化一个树列表
-        tree_array = [1]
-        # 对当前节点执行choose_r，生成辅助列表tree_array
-        tree_array = choose_r(tree_array, self, 1)
-        return tree_array
-
-    # 实例化方法——生成解码算子
-    def decoding_operation(self):
-        # 总结：该方法返还一个树结构列表，列表中的索引数字代表了树结构特定位置节点（以层定位，根节点为1，左节点偶，右节点奇）
-        def choose_r(tree_array1, node1, i):
-            # 如果节点实例的左节点非空且不是叶节点执行以下操作
-            if node1.left is not None and node1.op not in LEAVES:
-                # 下一个索引翻倍
-                next_idx = 2 * i
-                # 在当前辅助树列表中添加该索引
-                tree_array1.append(node1.left.op)
-                # 对当前实例左节点进行递归
-                tree_array1 = choose_r(tree_array1, node1.left, next_idx)
-            # 同上（除根节点外，左节点索引为偶数，右节点为奇数）
-            if node1.right is not None and node1.op not in LEAVES:
-                next_idx = (2 * i) + 1
-                tree_array1.append(node1.right.op)
-                tree_array1 = choose_r(tree_array1, node1.right, next_idx)
-            # 返还该树列表
-            return tree_array1
-        # 初始化一个树列表，"7"代表"+"
-        tree_array = [self.op]
-        # 对当前节点执行choose_r，生成辅助列表tree_array
-        tree_array = choose_r(tree_array, self, 1)
-        return tree_array
+    def full(self):
+        index_array = Using_heuristic.Coding_index()
+        operations_array = Using_heuristic.Coding_operation()
+        self.op = 7
+        self.left = Node()
+        self.left.op = 5
+        self.right = Node()
+        self.right.op = 5
 
     # 实例化方法——选择节点
     # 总结：返还Node的随机节点被node替换后的新Node）
@@ -347,13 +290,9 @@ class Individual:
     def __lt__(self, other):
         return self.fitness < other.fitness
 
-    # 实例化方法——调用Node类的grow方法（在根节点执行grow）
-    def grow(self, depth):
-        self.root.grow(depth)
-
     # 实例化方法——同上
-    def full(self, depth):
-        self.root.full(depth)
+    def full(self):
+        self.root.full()
 
     # 实例化方法——调用Node类的重组方法
     def recombine(self, other):

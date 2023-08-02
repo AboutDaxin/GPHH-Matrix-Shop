@@ -16,7 +16,7 @@ RUNS = 1
 # 定义GP类
 class GP:
     # 初始化方法：在GP类进行实例化时执行。参数为如下，简化参数弃用
-    def __init__(self, number, population_size=1, children_size=0, mutation=0.05, duplication=0.1, parsimony=0.5):
+    def __init__(self, number, population_size=1, children_size=0, parsimony=0.5):
         # 生成此实例的一个种群
         # 类属性：定义实例的种群(population)为一个列表
         self.number = number
@@ -34,7 +34,7 @@ class GP:
             # 实例化个体，使用Tree模块的Individual类
             individual = Individual(parsimony)
             # 使用full方法形成个体，使用Tree模块的full函数
-            individual.full(4)
+            individual.full()
             # 在种群列表中增加这个个体，完成整个种群的构建
             self.population.append(individual)
 
@@ -42,11 +42,8 @@ class GP:
         # “父”，“子”为空列表
         # 评估次数初始值为0，简化参数为预设的0.5
         self.parents = []
-        self.population_size = population_size
         self.children = []
         self.children_size = children_size
-        self.mutation = mutation
-        self.duplication = duplication
         self.evaluations = 0
         self.parsimony = parsimony
 
@@ -103,13 +100,7 @@ class GP:
         print('==== GLOBAL OPTIMUM ====')
         # 取bests列表中的最大值
         best = max(bests)
-        decoding_array1 = best.root.decoding_index()
-        decoding_array2 = best.root.decoding_operation()
-        decoding_array3 = best.root.left.string()
-        decoding_array4 = best.root.right.string()
-        # 输出heuristic数据表格
-        df1 = pd.DataFrame({"Type": ['Index array', 'Operations array', 'Routing heuristic', 'Sequencing heuristic'],
-                           "Value": [decoding_array1, decoding_array2, decoding_array3, decoding_array4]})
+
         # 生成调度表
         data_jobs = []
         for i in range(len(best.draw_value)):
@@ -125,9 +116,6 @@ class GP:
         df2 = df2.sort_values(by='Job index', ascending=True)
         df2 = df2.set_index('Job index')
         df2.to_excel(os.getcwd() + '\\schedule.xlsx')
-        # with pd.ExcelWriter(os.getcwd() + '\\heuristic.xlsx') as writer:
-        #     df1.to_excel(writer, sheet_name='Heuristic', index=False)
-        #     df2.to_excel(writer, sheet_name='Schedule', index=False)
 
         # 输出最优值的适应度和根字符
         print('best fitness: {}\nbest objective: {}'

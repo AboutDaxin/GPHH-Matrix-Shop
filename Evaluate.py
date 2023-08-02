@@ -44,7 +44,6 @@ def evaluate(individual, problems_origin, test_index):
         for time in range(hyper_period + 1):
             # 问题处于未完成状态
             if not have_finished:
-
                 # 路由规则
                 # 遍历所有task，用于给每个station的job序列加入新Job
                 for task in problem.tasks:
@@ -69,9 +68,9 @@ def evaluate(individual, problems_origin, test_index):
                                         priority_temp += individual.root.left.interpret(job, station, time)
                                     # 得到该station的当前优先值
                                     station.priority = priority_temp
-                                # 如果该station序列中没有任务，则优先值为随机数
+                                # 如果该station序列中没有任务，则优先值高
                                 else:
-                                    station.priority = random.random()
+                                    station.priority = 0
                         # 确定被选中的station（优先值最小为最高级别）
                         station_best = min(stations_temp) if stations_temp else print("no!")
                         # 在job序列对应的station中加入一个Job
@@ -90,8 +89,8 @@ def evaluate(individual, problems_origin, test_index):
                         for job in station.queue:
                             # 计算该job的优先级数值
                             job.priority = individual.root.right.interpret(job, station, time)
-                        # 随机排列该station的job序列
-                        shuffle(station.queue)
+                        # # 随机排列该station的job序列，这里可以打乱优先级相同的任务
+                        # shuffle(station.queue)
                         # 将该station的job序列按优先级从小到大排序（根据Job的富比较方法）
                         station.queue.sort()
                         # # 对station进行能力变更
