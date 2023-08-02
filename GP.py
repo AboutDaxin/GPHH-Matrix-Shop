@@ -123,9 +123,11 @@ class GP:
         df2.rename(columns={0: 'Job index', 1: 'Operation index', 2: 'Station index', 3: 'Start time', 4: 'Finish time',
                             5: 'Process time', 6: 'Setup time'}, inplace=True)
         df2 = df2.sort_values(by='Job index', ascending=True)
-        with pd.ExcelWriter(os.getcwd() + '\\heuristic.xlsx') as writer:
-            # df1.to_excel(writer, sheet_name='Heuristic', index=False)
-            df2.to_excel(writer, sheet_name='Schedule', index=False)
+        df2 = df2.set_index('Job index')
+        df2.to_excel(os.getcwd() + '\\schedule.xlsx')
+        # with pd.ExcelWriter(os.getcwd() + '\\heuristic.xlsx') as writer:
+        #     df1.to_excel(writer, sheet_name='Heuristic', index=False)
+        #     df2.to_excel(writer, sheet_name='Schedule', index=False)
 
         # 输出最优值的适应度和根字符
         print('best fitness: {}\nbest objective: {}'
