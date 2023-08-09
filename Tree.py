@@ -58,13 +58,14 @@ class Node:
             self.val = round(random(), 3)
         # 如果选中的不是OPERATORS，也不是LEAVES中的CONST，就结束生成
 
-    # 实例编码！
+    # 实例编码
     def full(self):
         index_array = Using_heuristic.Coding_index()
         operations_array = Using_heuristic.Coding_operation()
         val_array = Using_heuristic.Coding_val()
 
         def generate_individual(node1, i, index):
+            node1.op = operations_array[0]
             if len(index_array) != 1:
                 if index_array[i + 1] == 2 * index and operations_array[i + 1] not in LEAVES:
                     node1.left = Node()
