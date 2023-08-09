@@ -156,7 +156,7 @@ def evaluate(individual, problems_origin, test_index):
                                 missed_deadlines += 1
                 # 判断是否执行完毕
                 prcs_time_now = process_time
-                if prcs_time_last == prcs_time_now and prcs_time_last > release_max:
+                if prcs_time_last == prcs_time_now and time > release_max:
                     makespan = time
                     have_finished = True
                 else:

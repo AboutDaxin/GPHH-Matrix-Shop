@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="改成了固定结果版本1" />
+    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="貌似发现了问题，是schedule输出不全" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -372,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691569565690</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="貌似发现了问题，是schedule输出不全">
+      <created>1691573606982</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1691573606982</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -423,20 +430,21 @@
     <MESSAGE value="完成解码，并生成了调度表" />
     <MESSAGE value="改成了固定结果版本" />
     <MESSAGE value="改成了固定结果版本1" />
-    <option name="LAST_COMMIT_MESSAGE" value="改成了固定结果版本1" />
+    <MESSAGE value="貌似发现了问题，是schedule输出不全" />
+    <option name="LAST_COMMIT_MESSAGE" value="貌似发现了问题，是schedule输出不全" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/GP.py</url>
-          <line>271</line>
-          <option name="timeStamp" value="67" />
+          <line>267</line>
+          <option name="timeStamp" value="86" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/GP.py</url>
-          <line>244</line>
-          <option name="timeStamp" value="76" />
+          <line>306</line>
+          <option name="timeStamp" value="87" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
