@@ -266,17 +266,28 @@ class GP:
         print('==== GLOBAL OPTIMUM ====')
         # 取bests列表中的最大值
         best = max(bests)
+
+        # 解码
+        # 索引解码
         decoding_array1 = best.root.decoding_index()
         decoding_array1 = [str(i) for i in decoding_array1]
         decoding_array1 = ','.join(decoding_array1)
+        # 算子解码
         decoding_array2 = best.root.decoding_operation()
         decoding_array2 = [str(i) for i in decoding_array2]
         decoding_array2 = ','.join(decoding_array2)
+        # 文字输出
         decoding_array3 = best.root.left.string()
         decoding_array4 = best.root.right.string()
+        # node值解码
+        # 算子解码
+        decoding_array5 = best.root.decoding_val()
+        decoding_array5 = [str(i) for i in decoding_array5]
+        decoding_array5 = ','.join(decoding_array5)
+
         # 输出heuristic数据表格
-        df1 = pd.DataFrame({"Type": ['Index array', 'Operations array', 'Routing heuristic', 'Sequencing heuristic'],
-                           "Value": [decoding_array1, decoding_array2, decoding_array3, decoding_array4]})
+        df1 = pd.DataFrame({"Type": ['Index array', 'Operations array', 'Val', 'Routing heuristic', 'Sequencing heuristic'],
+                           "Value": [decoding_array1, decoding_array2, decoding_array5, decoding_array3, decoding_array4]})
         df1 = df1.set_index("Type")
         df1.to_excel(os.getcwd() + '\\heuristic.xlsx')
         # 生成调度表

@@ -120,8 +120,33 @@ class Node:
                 tree_array1 = choose_r(tree_array1, node1.right, next_idx)
             # 返还该树列表
             return tree_array1
-        # 初始化一个树列表，"7"代表"+"
+        # 初始化一个树列表
         tree_array = [self.op]
+        # 对当前节点执行choose_r，生成辅助列表tree_array
+        tree_array = choose_r(tree_array, self, 1)
+        return tree_array
+
+    # 实例化方法——生成解码node值
+    def decoding_val(self):
+        # 总结：该方法返还一个树结构列表，列表中的索引数字代表了树结构特定位置节点（以层定位，根节点为1，左节点偶，右节点奇）
+        def choose_r(tree_array1, node1, i):
+            # 如果节点实例的左节点非空且不是叶节点执行以下操作
+            if node1.left is not None and node1.op not in LEAVES:
+                # 下一个索引翻倍
+                next_idx = 2 * i
+                # 在当前辅助树列表中添加该索引
+                tree_array1.append(node1.left.val)
+                # 对当前实例左节点进行递归
+                tree_array1 = choose_r(tree_array1, node1.left, next_idx)
+            # 同上（除根节点外，左节点索引为偶数，右节点为奇数）
+            if node1.right is not None and node1.op not in LEAVES:
+                next_idx = (2 * i) + 1
+                tree_array1.append(node1.right.val)
+                tree_array1 = choose_r(tree_array1, node1.right, next_idx)
+            # 返还该树列表
+            return tree_array1
+        # 初始化一个树列表
+        tree_array = [self.val]
         # 对当前节点执行choose_r，生成辅助列表tree_array
         tree_array = choose_r(tree_array, self, 1)
         return tree_array
