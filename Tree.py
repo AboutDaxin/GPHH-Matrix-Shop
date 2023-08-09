@@ -58,33 +58,43 @@ class Node:
             self.val = round(random(), 3)
         # 如果选中的不是OPERATORS，也不是LEAVES中的CONST，就结束生成
 
-    # 实例化方法——full生成法
-    # 总结：生成完整结构树，全按最大深度生成，叶节点为LEAVES参数，非叶节点为OPERATORS参数
+    # 实例编码！
     def full(self):
         index_array = Using_heuristic.Coding_index()
         operations_array = Using_heuristic.Coding_operation()
-        self.op = 7
-        self.left = Node()
-        self.left.op = 5
-        self.right = Node()
-        self.right.op = 5
-        self.op = operations_array[0]
 
         def generate_individual(node1, i, index):
-            if index_array[i]:
-                if index_array[i] == 2 * index:
+            if len(index_array) != 1:
+                if index_array[i + 1] == 2 * index and operations_array[i + 1] not in LEAVES:
                     node1.left = Node()
-                    node1.left.op = operations_array[i]
-                    index = 2 * index
-                    i = i + 1
-                    generate_individual(node1.left, i, index)
-                elif index_array[i] == 2 * index + 1:
+                    node1.left.op = operations_array[i + 1]
+                    next_index = 2 * index
+                    index_array.pop(0)
+                    operations_array.pop(0)
+                    generate_individual(node1.left, i, next_index)
+                if index_array[i + 1] == 2 * index and operations_array[i + 1] in LEAVES:
+                    node1.left = Node()
+                    node1.left.op = operations_array[i + 1]
+                    next_index = 2 * index
+                    index_array.pop(0)
+                    operations_array.pop(0)
+                    generate_individual(node1.left, i, next_index)
+                if index_array[i + 1] == 2 * index + 1 and operations_array[i] not in LEAVES:
                     node1.right = Node()
-                    node1.right.op = operations_array[i]
-                    index = 2 * index + 1
-                    i = i + 1
-                    generate_individual(node1.right, i, index)
+                    node1.right.op = operations_array[i + 1]
+                    next_index = 2 * index + 1
+                    index_array.pop(0)
+                    operations_array.pop(0)
+                    generate_individual(node1.right, i, next_index)
+                if index_array[i + 1] == 2 * index + 1 and operations_array[i] in LEAVES:
+                    node1.right = Node()
+                    node1.right.op = operations_array[i + 1]
+                    next_index = 2 * index + 1
+                    index_array.pop(0)
+                    operations_array.pop(0)
+                    generate_individual(node1.right, i, next_index)
                 return node1
+        generate_individual(self, 0, 1)
 
     # 实例化方法——选择节点
     # 总结：返还Node的随机节点被node替换后的新Node）

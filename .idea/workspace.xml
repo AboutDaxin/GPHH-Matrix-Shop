@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="把随机过程全删除了，可保证每次结果一致">
+    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="尝试编码">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tree.py" afterDir="false" />
     </list>
@@ -158,16 +158,16 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.Using_heuristic" />
       <item itemvalue="Python.Instance" />
       <item itemvalue="Python.Tree" />
-      <item itemvalue="Python.Using_heuristic" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.Tree" />
         <item itemvalue="Python.Instance" />
         <item itemvalue="Python.Using_heuristic" />
@@ -361,7 +361,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690958285758</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="尝试编码">
+      <created>1691549825309</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1691549825309</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -410,7 +417,8 @@
     <MESSAGE value="如何存储规则？" />
     <MESSAGE value="生成了解码位置列表" />
     <MESSAGE value="编码列表生成" />
-    <option name="LAST_COMMIT_MESSAGE" value="编码列表生成" />
+    <MESSAGE value="尝试编码" />
+    <option name="LAST_COMMIT_MESSAGE" value="尝试编码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -419,6 +427,16 @@
           <url>file://$PROJECT_DIR$/Evaluate.py</url>
           <line>94</line>
           <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Tree.py</url>
+          <line>61</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/GP.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="66" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
