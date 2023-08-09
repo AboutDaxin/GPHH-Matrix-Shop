@@ -68,6 +68,23 @@ class Node:
         self.left.op = 5
         self.right = Node()
         self.right.op = 5
+        self.op = operations_array[0]
+
+        def generate_individual(node1, i, index):
+            if index_array[i]:
+                if index_array[i] == 2 * index:
+                    node1.left = Node()
+                    node1.left.op = operations_array[i]
+                    index = 2 * index
+                    i = i + 1
+                    generate_individual(node1.left, i, index)
+                elif index_array[i] == 2 * index + 1:
+                    node1.right = Node()
+                    node1.right.op = operations_array[i]
+                    index = 2 * index + 1
+                    i = i + 1
+                    generate_individual(node1.right, i, index)
+                return node1
 
     # 实例化方法——选择节点
     # 总结：返还Node的随机节点被node替换后的新Node）
@@ -138,7 +155,7 @@ class Node:
                 # 如果所选节点是右节点，同上
                 else:
                     current_node.right = deepcopy(node)
-        # 返还所选节点
+            # 返还所选节点
             return self
         else:
             return current_node
