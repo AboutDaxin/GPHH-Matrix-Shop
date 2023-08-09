@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="尝试编码">
+    <list default="true" id="dbd775fa-243f-4e0d-b893-78557db74d6d" name="Changes" comment="初步实现">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tree.py" afterDir="false" />
     </list>
@@ -368,7 +368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691549825309</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="初步实现">
+      <created>1691561602207</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1691561602207</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -418,7 +425,8 @@
     <MESSAGE value="生成了解码位置列表" />
     <MESSAGE value="编码列表生成" />
     <MESSAGE value="尝试编码" />
-    <option name="LAST_COMMIT_MESSAGE" value="尝试编码" />
+    <MESSAGE value="初步实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="初步实现" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
