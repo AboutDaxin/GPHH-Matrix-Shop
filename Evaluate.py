@@ -1,5 +1,3 @@
-import random
-from random import shuffle
 import copy
 from Modeling import Job
 from statistics import mean
@@ -71,7 +69,7 @@ def evaluate(individual, problems_origin, test_index):
                                     station.priority = priority_temp
                                 # 如果该station序列中没有任务，则优先值为随机数
                                 else:
-                                    station.priority = random.random()
+                                    station.priority = 0
                         # 确定被选中的station（优先值最小为最高级别）
                         station_best = min(stations_temp) if stations_temp else print("no!")
                         # 在job序列对应的station中加入一个Job
@@ -90,8 +88,6 @@ def evaluate(individual, problems_origin, test_index):
                         for job in station.queue:
                             # 计算该job的优先级数值
                             job.priority = individual.root.right.interpret(job, station, time)
-                        # 随机排列该station的job序列
-                        shuffle(station.queue)
                         # 将该station的job序列按优先级从小到大排序（根据Job的富比较方法）
                         station.queue.sort()
                         # # 对station进行能力变更
