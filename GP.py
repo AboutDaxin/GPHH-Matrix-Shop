@@ -13,7 +13,7 @@ import os
 # 设置一个常数K，用于后边锦标赛法选择子代
 K_CONST = 5
 # 最大个体评估次数（包含初代的个体）
-MAX_EVALUATIONS = 40
+MAX_EVALUATIONS = 20
 # 最小步长(弃用)
 MIN_DELTA = 0.001
 # 运行多少次
