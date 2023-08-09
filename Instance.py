@@ -5,14 +5,6 @@ import Input_outside
 
 
 def Instance():
-    # 用于存储对比运行的关键数据
-    output_gp = []
-    output_generations = []
-    output_data_avg = []
-    output_data_best = []
-    output_data_time = []
-    output_data_complexity = []
-    output_time_cost = []
     # 执行多次测试
     for n in range(1):
         # 第几次试验
@@ -33,11 +25,4 @@ def Instance():
         problems.append(Problem(task_list, station_list, 9999))
         # 执行该问题
         gp.run(problems, test_index)
-        # 传参，存储绘图用数据
-        output_gp.append(gp)
-        output_generations.append(gp.generations)
-        output_data_avg.append(gp.data_avg)
-        output_data_best.append(gp.data_best)
-        output_data_time.append(gp.data_time)
-        output_data_complexity.append(gp.data_complexity)
-        output_time_cost.append(gp.time_cost)
+

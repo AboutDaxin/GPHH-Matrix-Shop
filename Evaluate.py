@@ -1,6 +1,5 @@
 import copy
 from Modeling import Job
-from statistics import mean
 
 
 # 实例化方法——适应度评估（Individual类的evaluate）（核心）
@@ -181,7 +180,7 @@ def evaluate(individual, problems_origin, test_index):
         individual.makespan = makespan
         individual.total_transtime = total_transtime
 
-    # 个体适应度值取列表平均数（目前只有一个）
-    individual.fitness = mean(individual.fitnesses)
-    # 个体目标函数值列表平均数（目前只有一个）
-    individual.objective = mean(individual.objectives)
+    # 取最新个体适应度值
+    individual.fitness = individual.fitnesses[-1]
+    # 取最新个体目标函数值
+    individual.objective = individual.objectives[-1]
