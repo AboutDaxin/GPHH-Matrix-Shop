@@ -23,3 +23,14 @@ def Coding_operation():
     data_operation = str(data_task.values[1, 1]).split(',')
     data_operation = list(map(int, data_operation))
     return data_operation
+
+
+def Coding_val():
+    # 文件名
+    filename = os.getcwd() + r'\heuristic.xlsx'
+    # 读取excel的task
+    data_task = pd.read_excel(filename, sheet_name='Sheet1')
+    # 用于存储格式化后的总数据
+    data_val = str(data_task.values[2, 1]).split(',')
+    data_val = list(map(float, data_val))
+    return data_val

@@ -62,6 +62,7 @@ class Node:
     def full(self):
         index_array = Using_heuristic.Coding_index()
         operations_array = Using_heuristic.Coding_operation()
+        val_array = Using_heuristic.Coding_val()
 
         def generate_individual(node1, i, index):
             if len(index_array) != 1:
@@ -69,37 +70,41 @@ class Node:
                     node1.left = Node()
                     node1.left.op = operations_array[i + 1]
                     if node1.left.op == CONST:
-                        node1.left.val = 1
+                        node1.left.val = val_array[i + 1]
                     next_index = 2 * index
                     index_array.pop(0)
                     operations_array.pop(0)
+                    val_array.pop(0)
                     generate_individual(node1.left, i, next_index)
                 if index_array[i + 1] == 2 * index and operations_array[i + 1] in LEAVES:
                     node1.left = Node()
                     node1.left.op = operations_array[i + 1]
                     if node1.left.op == CONST:
-                        node1.left.val = 1
+                        node1.left.val = val_array[i + 1]
                     next_index = 2 * index
                     index_array.pop(0)
                     operations_array.pop(0)
+                    val_array.pop(0)
                     generate_individual(node1.left, i, next_index)
                 if index_array[i + 1] == 2 * index + 1 and operations_array[i] not in LEAVES:
                     node1.right = Node()
                     node1.right.op = operations_array[i + 1]
                     if node1.right.op == CONST:
-                        node1.right.val = 1
+                        node1.right.val = val_array[i + 1]
                     next_index = 2 * index + 1
                     index_array.pop(0)
                     operations_array.pop(0)
+                    val_array.pop(0)
                     generate_individual(node1.right, i, next_index)
                 if index_array[i + 1] == 2 * index + 1 and operations_array[i] in LEAVES:
                     node1.right = Node()
                     node1.right.op = operations_array[i + 1]
                     if node1.right.op == CONST:
-                        node1.right.val = 1
+                        node1.right.val = val_array[i + 1]
                     next_index = 2 * index + 1
                     index_array.pop(0)
                     operations_array.pop(0)
+                    val_array.pop(0)
                     generate_individual(node1.right, i, next_index)
                 return node1
         generate_individual(self, 0, 1)
