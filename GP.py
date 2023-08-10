@@ -115,7 +115,7 @@ class GP:
                             5: 'Process time', 6: 'Setup time'}, inplace=True)
         df2 = df2.sort_values(by='Job index', ascending=True)
         df2 = df2.set_index('Job index')
-        df2.to_excel(os.getcwd() + '\\schedule.xlsx')
+        df2.to_excel(os.path.dirname(os.getcwd()) + r'\output_file\schedule.xlsx')
 
         # 输出最优值的适应度和根字符
         print('best fitness: {}\nbest objective: {}'

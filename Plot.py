@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import os
 
 
 # 生成gantt图
@@ -68,4 +69,5 @@ def plt_gantt(best, number):
         plt.title("Gantt CCGP-ISP")
     plt.xlabel("Process Time /h")
     plt.ylabel("Cells")
+    plt.savefig(os.path.dirname(os.getcwd()) + r'\output_file\Gantt.jpg')
     plt.show()
