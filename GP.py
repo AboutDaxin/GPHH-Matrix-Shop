@@ -289,7 +289,7 @@ class GP:
         df1 = pd.DataFrame({"Type": ['Index array', 'Operations array', 'Val', 'Routing heuristic', 'Sequencing heuristic'],
                            "Value": [decoding_array1, decoding_array2, decoding_array5, decoding_array3, decoding_array4]})
         df1 = df1.set_index("Type")
-        df1.to_excel(os.getcwd() + '\\heuristic.xlsx')
+        df1.to_excel(os.path.dirname(os.getcwd()) + '\\output_file\\heuristic.xlsx')
         # 生成调度表
         data_jobs = []
         for i in range(len(best.draw_value)):
@@ -304,7 +304,7 @@ class GP:
                             5: 'Process time', 6: 'Setup time'}, inplace=True)
         df2 = df2.sort_values(by='Job index', ascending=True)
         df2 = df2.set_index("Job index")
-        df2.to_excel(os.getcwd() + '\\schedule.xlsx')
+        df2.to_excel(os.path.dirname(os.getcwd()) + '\\output_file\\schedule.xlsx')
         # with pd.ExcelWriter(os.getcwd() + '\\heuristic.xlsx') as writer:
         #     df1.to_excel(writer, sheet_name='Heuristic', index=False)
         #     df2.to_excel(writer, sheet_name='Schedule', index=False)

@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import os
 
 
 # 生成gantt图
@@ -55,11 +56,11 @@ def plt_gantt(best, number):
     for i in complete_data:
         m.append(i[2])
     for i in range(max(m)):
-        ylabels.append("Cell" + str(i + 1))
+        ylabels.append("Cell" + " " + str(i + 1))
     plt.yticks(range(1, max(m) + 1), ylabels, rotation=45)
     # 生成title
     if number == 0:
-        plt.title("Gantt-TTGP")
+        plt.title("Gantt")
     elif number == 1:
         plt.title("Gantt TTGP-ISP")
     elif number == 2:
@@ -68,4 +69,5 @@ def plt_gantt(best, number):
         plt.title("Gantt CCGP-ISP")
     plt.xlabel("Process Time /h")
     plt.ylabel("Cells")
+    plt.savefig(os.path.dirname(os.getcwd()) + r'\output_file\Gantt.jpg')
     plt.show()
